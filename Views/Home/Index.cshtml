@@ -1,0 +1,58 @@
+﻿@{
+    ViewData["Title"] = "Square Root Calculator";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Square Root Calculator</h1>
+    <p>Enter two Numbers, Let us find the Roots</p>
+
+@{
+    if(ViewBag.error != null)
+    {
+        <div class="col-8 mx-auto text-center m-2">
+            <p class="bg-danger rounded text-white text-bold p-3">@ViewBag.error</p>
+        </div>
+    }
+}
+
+    <div class="mx-auto col-8">
+        <form asp-controller="Home" asp-action="Index" method="post">
+            <div class="row">
+                <label for="number1">First Number: </label>
+                <input class="form-control" type="text" name="number1" placeholder="Enter First number">
+            </div>
+            <div class="row">
+                <label for="number2">Second Number: </label>
+                <input class="form-control" type="text" name="number2" placeholder="Enter Second number">
+            </div>
+            <div class="m-2">
+                <button class="btn btn-success" type="submit">Find the Roots</button>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+@{
+    if(ViewBag.root1 != null && ViewBag.root2 != null && ViewBag.numberOne != null && ViewBag.numberTwo != null)
+    {
+        if(ViewBag.root1 > ViewBag.root2)
+        {
+            <div class="col-10 mx-auto text-center m-2">
+                <p class="bg-dark rounded text-white p-3">The number @ViewBag.numberOne with Square root @ViewBag.root1 has a higher square root than the number @ViewBag.numberTwo with square root @ViewBag.root2</p>
+            </div>
+        }
+        else if(ViewBag.root1 < ViewBag.root2)
+        {
+            <div class="col-10 mx-auto text-center m-2">
+                <p class="bg-dark rounded text-white p-3">The number @ViewBag.numberTwo with Square root @ViewBag.root2 has a higher square root than the number @ViewBag.numberOne with square root @ViewBag.root1</p>
+            </div>
+        }
+        else if(ViewBag.root1 == ViewBag.root2)
+        {
+            <div class="col-10 mx-auto text-center m-2">
+                <p class="bg-warning rounded text-dark p-3">Both of the numbers entered have the same square root. Please enter different Numbers.</p>
+            </div>
+        }
+    }
+}
